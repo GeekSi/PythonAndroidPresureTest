@@ -1,0 +1,5 @@
+.idea
+build
+dist
+tempfile
+__pycache__

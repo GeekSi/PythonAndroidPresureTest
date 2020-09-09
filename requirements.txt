@@ -1,0 +1,8 @@
+altgraph==0.17
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+prettytable==0.7.2
+pyecharts==1.8.1
+pyinstaller==4.0
+pyinstaller-hooks-contrib==2020.7
+simplejson==3.17.2
