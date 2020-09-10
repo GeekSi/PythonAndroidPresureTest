@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
 import run
-from constant import constants
+from controller import uicontroller
 
 
 def callback():
@@ -22,11 +22,12 @@ def callback():
 
 
 def closeClient():
-    if run.isRunning and tk.messagebox.askokcancel("提示", "关闭压测?"):
-        run.stop()
-        root.destroy()
-    else:
-        root.destroy()
+    if tk.messagebox.askokcancel("提示", "关闭压测?"):
+        if run.isRunning:
+            run.stop()
+            root.destroy()
+        else:
+            root.destroy()
 
 
 def set_win_center(root, curWidth='', curHight=''):
@@ -88,12 +89,12 @@ scroll.pack(side=tk.RIGHT, fill=tk.Y)
 
 text = Text(f3, width=60, height=15, relief="solid", borderwidth=1)
 text.pack(side=tk.RIGHT, fill=tk.Y)
-text.config(state='disable')
 
 scroll.config(command=text.yview)
 text.config(yscrollcommand=scroll.set)
 
-constants.text = text
+uicontroller.text = text
+uicontroller.btn = b1
 
 set_win_center(root, 450, 370)
 

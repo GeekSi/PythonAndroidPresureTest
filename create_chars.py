@@ -96,17 +96,44 @@ def createChars():
                 .add_yaxis(
                 series_name="java",
                 y_axis=javaMemArr,
-                linestyle_opts=opts.LineStyleOpts(width=2), is_smooth=True, is_symbol_show=False
+                linestyle_opts=opts.LineStyleOpts(width=2), is_smooth=True, is_symbol_show=False,
+                markpoint_opts=opts.MarkPointOpts(
+                    data=[
+                        opts.MarkPointItem(type_="max", name="java_max"),
+                        opts.MarkPointItem(type_="min", name="java_min"),
+                    ]
+                ),
+                markline_opts=opts.MarkLineOpts(
+                    data=[opts.MarkLineItem(type_="average", name="java_avg")]
+                )
             )
                 .add_yaxis(
                 series_name="native",
                 y_axis=nativeMemArr,
-                linestyle_opts=opts.LineStyleOpts(width=2), is_smooth=True, is_symbol_show=False
+                linestyle_opts=opts.LineStyleOpts(width=2), is_smooth=True, is_symbol_show=False,
+                markpoint_opts=opts.MarkPointOpts(
+                    data=[
+                        opts.MarkPointItem(type_="max", name="native_max"),
+                        opts.MarkPointItem(type_="min", name="native_min"),
+                    ]
+                ),
+                markline_opts=opts.MarkLineOpts(
+                    data=[opts.MarkLineItem(type_="average", name="native_avg")]
+                )
             )
                 .add_yaxis(
                 series_name="total",
                 y_axis=totalMemArr,
-                linestyle_opts=opts.LineStyleOpts(width=2), is_smooth=True, is_symbol_show=False
+                linestyle_opts=opts.LineStyleOpts(width=2), is_smooth=True, is_symbol_show=False,
+                markpoint_opts=opts.MarkPointOpts(
+                    data=[
+                        opts.MarkPointItem(type_="max", name="total_max"),
+                        opts.MarkPointItem(type_="min", name="total_min"),
+                    ]
+                ),
+                markline_opts=opts.MarkLineOpts(
+                    data=[opts.MarkLineItem(type_="average", name="total_avg")]
+                )
             )
                 .set_global_opts(
                 title_opts=opts.TitleOpts(title="mem"),

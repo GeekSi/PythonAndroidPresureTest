@@ -6,8 +6,8 @@ from monitor import mem_monitor
 from monitor import pid_monitor
 from threading import Timer
 from constant import constants
+from controller import uicontroller
 import create_chars
-import webbrowser
 
 timeUsed = 0
 
@@ -38,6 +38,7 @@ def close():
 def tick(inc, pkgName, presureTime):
     global closeByHandle
     if closeByHandle:
+        uicontroller.setBtnText("开始监控")
         log_utils.log("手动关闭")
         return
     global timeUsed
@@ -46,6 +47,7 @@ def tick(inc, pkgName, presureTime):
         log_utils.log("压测时间到")
         create_chars.createChars()
         utils.open("file://" + constants.PATH_CHARS)
+        uicontroller.setBtnText("开始监控")
         return
     getInfoMation(pkgName)
     t = Timer(inc, tick, (inc, pkgName, presureTime))
