@@ -3,3 +3,4 @@ build
 dist
 tempfile
 __pycache__
+venv

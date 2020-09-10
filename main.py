@@ -86,16 +86,16 @@ b1.place(x=300, y=40)
 scroll = tkinter.Scrollbar(f3)
 scroll.pack(side=tk.RIGHT, fill=tk.Y)
 
-text = Text(f3, width=60, height=15)
+text = Text(f3, width=60, height=15, relief="solid", borderwidth=1)
 text.pack(side=tk.RIGHT, fill=tk.Y)
-text.config(state='normal')
+text.config(state='disable')
 
 scroll.config(command=text.yview)
 text.config(yscrollcommand=scroll.set)
 
 constants.text = text
 
-set_win_center(root, 450, 360)
+set_win_center(root, 450, 370)
 
 root.protocol("WM_DELETE_WINDOW", closeClient)
 
