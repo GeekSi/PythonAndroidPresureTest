@@ -3,20 +3,12 @@ from utils import file_utils
 from utils import log_utils
 
 index = 0
-java = 0
-native = 0
-total = 0
 
 
-def execute(pid, pkgName, filePath):
+def recordMem(pid, pkgName, filePath):
     cmd = "adb shell dumpsys meminfo %s" % (pid)
     stat = utils.excuteCmd(cmd)
-
     memArr = stat.splitlines()
-
-    global java
-    global native
-    global total
 
     for item in memArr:
         line = item.lstrip()
@@ -29,16 +21,26 @@ def execute(pid, pkgName, filePath):
             elif valueArr[0] == 'TOTAL:':
                 total = int(valueArr[1])
 
-    log_utils.log("%d/java \t %d/native \t %d/total " % (java, native, total))
+    log_utils.log(pkgName + ": \t%d/java \t %d/native \t %d/total " % (java, native, total))
 
     memFile = filePath + pkgName + "_mem.txt"
-    content = utils.getTime() + "|" + str(int(java/1000)) + "|" + str(int(native/1000)) + "|" + str(int(total/1000))
+    content = utils.getTime() + "|" + str(int(java / 1000)) + "|" + str(int(native / 1000)) + "|" + str(
+        int(total / 1000))
     file_utils.writeFileAdd(memFile, content + "\n")
 
 
-def tick(pid, pkgName, filePath):
+def execute(pkgArr, filePath):
+    for pkgName in pkgArr:
+        pid = utils.getPid(pkgName)
+        if len(pid) == 0:
+            log_utils.log("process %s not run" % (pkgName))
+        else:
+            recordMem(pid, pkgName, filePath)
+
+
+def tick(pkgArr, filePath):
     global index
     index = index + 1
     if index % 7 == 0:
-        execute(pid, pkgName, filePath)
+        execute(pkgArr, filePath)
         index = 0

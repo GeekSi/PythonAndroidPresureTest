@@ -21,3 +21,7 @@ def getRootPath():
 
 def open(url):
     webbrowser.open(url)
+
+
+def getPid(pkgName):
+    return excuteCmd("adb shell pidof " + pkgName)

@@ -17,17 +17,18 @@ isRunning = False
 
 
 def getInfoMation(pkgName):
-    processPid = utils.excuteCmd("adb shell pidof " + pkgName)
-    if len(processPid) == 0:
-        log_utils.log("process %s not run" % (pkgName))
+    if len(pkgName) == 0:
+        log_utils.log("请输入要检测的进程名,多个进程用|隔开")
         return
     try:
         log_utils.log("-----------------" + utils.getTime() + "-----------------")
-        pid_monitor.tick(processPid, pkgName, constants.PATH_PID)
-        cpu_monitor.tick(processPid, pkgName, constants.PATH_CPU)
-        mem_monitor.tick(processPid, pkgName, constants.PATH_MEM)
+        pkgArr = pkgName.split("|")
+        pid_monitor.tick(pkgArr, constants.PATH_PID)
+        cpu_monitor.tick(pkgArr, constants.PATH_CPU)
+        mem_monitor.tick(pkgArr, constants.PATH_MEM)
     except Exception as e:
-        log_utils.log(e)
+        print(e)
+        log_utils.log(str(e))
 
 
 def close():

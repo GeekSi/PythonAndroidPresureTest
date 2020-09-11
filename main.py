@@ -7,7 +7,7 @@ from controller import uicontroller
 
 def callback():
     if E1.get().strip() == '':
-        tk.messagebox.showinfo("错误", "请输入包名")
+        tk.messagebox.showinfo("错误", "请输入要检测的进程名,多个进程用|隔开")
         return
     if E2.get().strip() == '':
         tk.messagebox.showinfo("错误", "请输入压测时间,单位分钟")
