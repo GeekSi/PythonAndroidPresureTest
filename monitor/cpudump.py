@@ -20,6 +20,7 @@ class cpudump:
             cpuProcessInfo = cpu_info_process.CpuProcessInfo()
             cpuProcessInfo.getCpuInfo(pid)
             self.lastProcessCpuInfo = cpuProcessInfo
+            self.pid = pid
             return
 
         cpuProcessInfo = cpu_info_process.CpuProcessInfo()
