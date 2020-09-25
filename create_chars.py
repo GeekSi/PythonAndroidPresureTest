@@ -3,6 +3,8 @@ from pyecharts.charts import Line, Page
 
 from utils import utils
 
+from utils import file_utils
+
 from constant import constants
 
 import os
@@ -17,7 +19,7 @@ def createChars():
     timeArr = []
     for file in files:
         processName = file.split("_")[0]
-        content = utils.excuteCmd("cat " + constants.PATH_CPU + file)
+        content = file_utils.readFile(constants.PATH_CPU + file)
         contentLineArr = content.splitlines()
         for i in range(len(contentLineArr)):
             arr = contentLineArr[i].split("|")
@@ -64,7 +66,7 @@ def createChars():
     files.sort()
     for file in files:
         processName = file.split("_")[0]
-        content = utils.excuteCmd("cat " + constants.PATH_MEM + file)
+        content = file_utils.readFile(constants.PATH_MEM + file)
         contentLineArr = content.splitlines()
         timeArr = []
         javaMemArr = []
@@ -143,7 +145,7 @@ def createChars():
 
     for file in files:
         processName = file.split("_")[0]
-        content = utils.excuteCmd("cat " + constants.PATH_PID + file)
+        content = file_utils.readFile(constants.PATH_PID + file)
         contentLineArr = content.splitlines()
         timeArr = []
         pidArr = []

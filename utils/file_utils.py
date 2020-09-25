@@ -28,3 +28,11 @@ def mkdir(path):
     isExists = os.path.exists(path)
     if not isExists:
         os.makedirs(path)
+
+def readFile(path):
+    try:
+        f = open(path, 'r')
+        return f.read()
+    finally:
+        if f:
+            f.close()
