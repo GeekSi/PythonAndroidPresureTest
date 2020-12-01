@@ -4,6 +4,7 @@ import webbrowser
 
 
 def excuteCmd(cmd):
+    cmd = cmd.replace("\n", "")
     tempFile = os.popen(cmd)
     content = tempFile.read()
     tempFile.close()
@@ -24,4 +25,4 @@ def open(url):
 
 
 def getPid(pkgName):
-    return excuteCmd("adb shell pidof " + pkgName)
+    return excuteCmd("adb shell pidof " + pkgName).replace("\n", "")

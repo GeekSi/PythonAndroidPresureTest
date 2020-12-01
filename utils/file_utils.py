@@ -15,8 +15,8 @@ def deleteFile(path):
 def deleteDir(path):
     if os.path.isdir(path):
         for x in os.listdir(path):
-            if os.path.isdir(x):
-                deleteDir(x)
+            if os.path.isdir(path + x):
+                deleteDir(path + x + "/")
             else:
                 deleteFile(path + x)
     else:
@@ -28,6 +28,7 @@ def mkdir(path):
     isExists = os.path.exists(path)
     if not isExists:
         os.makedirs(path)
+
 
 def readFile(path):
     try:

@@ -4,6 +4,8 @@ from utils import log_utils
 from monitor import cpu_monitor
 from monitor import mem_monitor
 from monitor import pid_monitor
+from monitor import fd_monitor
+from monitor import thread_monitor
 from threading import Timer
 from constant import constants
 from controller import uicontroller
@@ -26,6 +28,8 @@ def getInfoMation(pkgName):
         pid_monitor.tick(pkgArr, constants.PATH_PID)
         cpu_monitor.tick(pkgArr, constants.PATH_CPU)
         mem_monitor.tick(pkgArr, constants.PATH_MEM)
+        fd_monitor.tick(pkgArr, constants.PATH_FD)
+        thread_monitor.tick(pkgArr, constants.PATH_THREAD)
     except Exception as e:
         print(e)
         log_utils.log(str(e))
@@ -61,13 +65,12 @@ def start(pkgName, presureTime):
     global closeByHandle
     closeByHandle = False
     isRunning = True
-    file_utils.deleteDir(constants.PATH_PID)
-    file_utils.deleteDir(constants.PATH_MEM)
-    file_utils.deleteDir(constants.PATH_CPU)
-    file_utils.deleteDir(constants.PATH_VIEW)
+    file_utils.deleteDir(constants.PATH_TEMP)
     file_utils.mkdir(constants.PATH_PID)
     file_utils.mkdir(constants.PATH_MEM)
     file_utils.mkdir(constants.PATH_CPU)
+    file_utils.mkdir(constants.PATH_FD)
+    file_utils.mkdir(constants.PATH_THREAD)
     file_utils.mkdir(constants.PATH_VIEW)
     tick(1, pkgName, presureTime)
 

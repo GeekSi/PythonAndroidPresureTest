@@ -10,7 +10,7 @@ def execute(pkgNameArr, filePath):
         if len(pid) == 0:
             log_utils.log("process %s not run" % (pkgName))
         else:
-            content = utils.getTime() + "|" + pid
+            content = utils.getTime() + "|" + pid + "\n"
             file_utils.writeFileAdd(filePath + pkgName + "_pid.txt", content)
 
 
