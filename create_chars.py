@@ -15,10 +15,7 @@ def createItem(timeArr, dictData, titleText, needMax):
             .set_global_opts(
             title_opts=opts.TitleOpts(title=titleText + " : "),
             tooltip_opts=opts.TooltipOpts(trigger="axis"),
-            datazoom_opts=[
-                opts.DataZoomOpts(xaxis_index=0),
-                opts.DataZoomOpts(type_="inside", xaxis_index=0),
-            ]
+
         )
     )
 
@@ -71,10 +68,6 @@ def createChars():
             .set_global_opts(
             title_opts=opts.TitleOpts(title="CPU : "),
             tooltip_opts=opts.TooltipOpts(trigger="axis"),
-            datazoom_opts=[
-                opts.DataZoomOpts(xaxis_index=0),
-                opts.DataZoomOpts(type_="inside", xaxis_index=0),
-            ]
         )
     )
 
@@ -165,10 +158,6 @@ def createChars():
                 title_opts=opts.TitleOpts(subtitle="MEM : " + processName,
                                           subtitle_textstyle_opts=opts.TextStyleOpts(color="black")),
                 tooltip_opts=opts.TooltipOpts(trigger="axis"),
-                datazoom_opts=[
-                    opts.DataZoomOpts(xaxis_index=0),
-                    opts.DataZoomOpts(type_="inside", xaxis_index=0),
-                ]
             )
         )
 
@@ -253,6 +242,3 @@ def createChars():
     for item in list:
         page.add(item)
     page.render(constants.PATH_CHARS)
-
-
-createChars()
