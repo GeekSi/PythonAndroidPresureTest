@@ -9,6 +9,7 @@ from monitor import thread_monitor
 from threading import Timer
 from constant import constants
 from controller import uicontroller
+from manager import cpu_manager
 import create_chars
 
 timeUsed = 0
@@ -53,6 +54,7 @@ def tick(inc, pkgName, presureTime):
         create_chars.createChars()
         utils.open("file://" + constants.PATH_CHARS)
         uicontroller.setBtnText("开始监控")
+        cpu_manager.stop()
         return
     getInfoMation(pkgName)
     t = Timer(inc, tick, (inc, pkgName, presureTime))
@@ -72,7 +74,11 @@ def start(pkgName, presureTime):
     file_utils.mkdir(constants.PATH_FD)
     file_utils.mkdir(constants.PATH_THREAD)
     file_utils.mkdir(constants.PATH_VIEW)
+    file_utils.mkdir(constants.PATH_TASK)
     tick(1, pkgName, presureTime)
+    pkgArr = pkgName.split("|")
+    cpu_manager.start(pkgArr, constants.PATH_TASK)
+
 
 
 def stop():
@@ -80,4 +86,5 @@ def stop():
     closeByHandle = True
     global isRunning
     isRunning = False
+    cpu_manager.stop()
     close()
